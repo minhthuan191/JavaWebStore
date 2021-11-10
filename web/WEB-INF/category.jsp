@@ -53,6 +53,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="MainController?action=Order">Order</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="MainController?action=Logout">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>

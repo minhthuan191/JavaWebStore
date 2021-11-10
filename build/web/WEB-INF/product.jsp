@@ -58,6 +58,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="MainController?action=Order">Order</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="MainController?action=Logout">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -97,7 +100,7 @@
                         <td><input type="text" name="name" value="<%= product.getName()%>" required=""/></td>
                         <td><%= product.getCategoryID()%></td>
                         <td><input type="text" name="descr" value="<%= product.getDescr()%>" required=""/></td>
-                        <td><img src="<%= product.img%>" style="width: 80px; height: 80px"/> </td>
+                        <td><img src="<%= product.getImg()%>" style="width: 80px ; height: 100px"/></td>
                         <td><input type="text" name="quantity" value="<%= product.getQuantity()%>" required=""/></td>
                         <td><input type="text" name="price" value="<%= product.getPrice()%>" required=""/></td>
                         <td><input type="text" name="statusID" value="<%= product.getStatusID()%>" required=""/></td>
@@ -116,7 +119,6 @@
                 </tbody>
             </table>
         </div>
-
         <%
             String error = (String) request.getAttribute("ERROR");
             if (error == null) {

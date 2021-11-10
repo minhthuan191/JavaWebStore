@@ -34,6 +34,12 @@
                     font-size: 3.5rem;
                 }
             }
+            img.mb-4{
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 50%;
+            }
             html,
             body {
                 height: 100%;
@@ -104,7 +110,7 @@
 
                 <a href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:8084/VegetableStore/LoginGoogleHandler&response_type=code
                    &client_id=495690914730-saeq55pnbgak2fme5prqbuq9t7foh89j.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
-                <button class="w-100 btn btn-lg btn-primary" type="submit" name ="action" value="Login" style="margin-bottom: 10px">Sign in</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit" name ="action" value="Login" style="margin:10px 0">Sign in</button>
 
                 <button class="w-100 btn btn-lg btn-secondary" type="submit" name ="action" value="ShowRegister">Sign up</button>
 

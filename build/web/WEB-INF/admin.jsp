@@ -72,6 +72,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="MainController?action=Order">Order</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="MainController?action=Logout">Logout</a>
+                        </li>
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-2" type="text" name="search" value="<%= search%>" placeholder="Search" aria-label="Search">
@@ -80,16 +83,6 @@
                 </div>
             </div>
         </nav>
-        <h1>Hello Admin!</h1>
-
-        <h1>Welcome ADMIN: <%= loginUser.getName()%></h1>
-        <form action="MainController">
-            <input type="submit" name ="action" value="Logout"/>
-        </form>
-
-
-
-
 
         <%
             List<UserDTO> listUser = (List<UserDTO>) request.getAttribute("LIST_USER");

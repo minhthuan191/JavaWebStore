@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
-import static java.util.stream.DoubleStream.builder;
-import sample.product.ProductDTO;
 import sample.utils.DBUtil;
 
 /**
@@ -25,6 +23,7 @@ import sample.utils.DBUtil;
  * @author USER
  */
 public class OrderDAO {
+
     public List<OrderDTO> getListOrder() throws SQLException {
         List<OrderDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -41,7 +40,7 @@ public class OrderDAO {
                     String userID = rs.getString("userID");
                     String date = rs.getString("date");
                     int total = Integer.parseInt(rs.getString("total"));
-                    OrderDTO order = new OrderDTO(orderID, userID, date, total);      
+                    OrderDTO order = new OrderDTO(orderID, userID, date, total);
                     list.add(order);
                 }
             }
@@ -60,30 +59,30 @@ public class OrderDAO {
         }
         return list;
     }
-    public String generateID()
-    {  
+
+    public String generateID() {
         String chars = "abcdefghijklmnopqrstuvwxyz0123456789";
         String randomID = "";
         StringBuilder builder = new StringBuilder();
         int lenght = 32;
         Random rnd = new Random();
         char[] text = new char[lenght];
-        for(int i = 0; i < lenght; i++){
+        for (int i = 0; i < lenght; i++) {
             text[i] = chars.charAt(rnd.nextInt(chars.length()));
         }
-        
-        for(int i = 0; i< text.length; i++){
+
+        for (int i = 0; i < text.length; i++) {
             builder.append(text[i]);
-            if((i/4 == 2 && i%4 == 0)||(i/4 == 3 && i%4 == 1)||(i/4 == 4 && i%4 == 2)||(i/4 == 5 && i%4 == 3)){
+            if ((i / 4 == 2 && i % 4 == 0) || (i / 4 == 3 && i % 4 == 1) || (i / 4 == 4 && i % 4 == 2) || (i / 4 == 5 && i % 4 == 3)) {
                 randomID = builder.insert(i, "-").toString();
             }
         }
         return randomID;
     }
-    
-    public OrderDTO createOrder(String userID, int total) throws SQLException{
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyy");  
-        LocalDateTime now = LocalDateTime.now();  
+
+    public OrderDTO createOrder(String userID, int total) throws SQLException {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyy");
+        LocalDateTime now = LocalDateTime.now();
         OrderDTO order = new OrderDTO();
         boolean check = false;
         Connection conn = null;
@@ -97,10 +96,10 @@ public class OrderDAO {
                 stm.setString(1, orderID);
                 stm.setString(2, userID);
                 stm.setString(3, dtf.format(now));
-                stm.setInt(4, total );
-                
-                check = stm.executeUpdate() > 0 ? true : false   ;
-                if (check){
+                stm.setInt(4, total);
+
+                check = stm.executeUpdate() > 0 ? true : false;
+                if (check) {
                     order = new OrderDTO(orderID, userID, dtf.format(now), total);
                 }
             }
@@ -115,6 +114,7 @@ public class OrderDAO {
             }
         }
         return order;
-        
-    };
+
+    }
+;
 }

@@ -44,20 +44,20 @@ public class ProductDAO {
                     String statusID = rs.getString("statusID");
                     String expiration = rs.getString("expiration");
                     ProductDTO product = new ProductDTO(productID, name, categoryID, descr, img, quantity, price, statusID, expiration);
-                    
+
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                     String timeNow = sdf.format(Calendar.getInstance().getTime());
                     String exp = product.expiration;
                     System.out.println(exp);
                     boolean a = sdf.parse(product.expiration).before(sdf.parse(timeNow));
-                    if(sdf.parse(product.expiration).before(sdf.parse(timeNow))){
+                    if (sdf.parse(product.expiration).before(sdf.parse(timeNow))) {
                         product.setStatusID("1");
                         String sqlStat = "UPDATE tblProducts (statusID) VALUES (?) WHERE productID = ?";
                         stm = conn.prepareStatement(sqlStat);
                         stm.setString(1, product.getStatusID());
                         stm.setString(2, product.getProductID());
                     }
-                    
+
                     list.add(product);
                 }
             }
@@ -76,8 +76,8 @@ public class ProductDAO {
         }
         return list;
     }
-    
-    public ProductDTO getProductByID(String productID) throws SQLException{
+
+    public ProductDTO getProductByID(String productID) throws SQLException {
         ProductDTO product = new ProductDTO();
         Connection conn = null;
         PreparedStatement stm = null;
@@ -148,7 +148,7 @@ public class ProductDAO {
         }
         return check;
     }
-    
+
     public boolean createProduct(ProductDTO product) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -156,7 +156,7 @@ public class ProductDAO {
         try {
             conn = DBUtil.getConnection();
             if (conn != null) {
-                String sql = "INSERT INTO tblProducts (productID, name, categoryID, descr, img, quantity, price, statusID, expiration) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                String sql = "INSERT INTO tblProducts (productID, name, categoryID, descr, img, quantity, price, statusID, expiration) VALUES (?, N'?', ?, ?, ?, ?, ?, ?, ?);";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, product.getProductID());
                 stm.setString(2, product.getName());
@@ -167,11 +167,11 @@ public class ProductDAO {
                 stm.setInt(7, product.getPrice());
                 stm.setString(8, product.getStatusID());
                 stm.setString(9, product.getExpiration());
-                
+
                 check = stm.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
-            
+
             e.printStackTrace();
         } finally {
             if (stm != null) {
@@ -183,8 +183,8 @@ public class ProductDAO {
         }
         return check;
     }
-    
-    public boolean checkDuplicate(String productID) throws SQLException{
+
+    public boolean checkDuplicate(String productID) throws SQLException {
         boolean check = false;
         Connection conn = null;
         PreparedStatement stm = null;
@@ -195,8 +195,8 @@ public class ProductDAO {
                 String sql = "SELECT productID FROM tblProducts WHERE productID = ?";
                 stm = conn.prepareStatement(sql);
                 stm.setString(1, productID);
-                rs= stm.executeQuery();
-                if(rs.next()){
+                rs = stm.executeQuery();
+                if (rs.next()) {
                     check = true;
                 }
             }
@@ -214,6 +214,6 @@ public class ProductDAO {
             }
         }
         return check;
-        
+
     }
 }
