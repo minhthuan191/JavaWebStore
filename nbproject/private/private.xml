@@ -3,8 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/web/WEB-INF/product.jsp</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/web/WEB-INF/category.jsp</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/web/WEB-INF/error.jsp</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/src/java/sample/controllers/MainController.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/src/java/sample/cart/Cart.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/web/WEB-INF/cart.jsp</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/web/WEB-INF/createProduct.jsp</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/src/java/sample/order/OrderDAO.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/src/java/sample/controllers/EditQuantityController.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/src/java/sample/product/ProductDAO.java</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/web/WEB-INF/home.jsp</file>
+            <file>file:/C:/Users/USER/Documents/NetBeansProjects/VegetableStore/src/java/sample/controllers/OrderController.java</file>
         </group>
     </open-files>
 </project-private>

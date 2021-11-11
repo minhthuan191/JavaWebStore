@@ -24,27 +24,33 @@ import sample.product.ProductDAO;
 @WebServlet(name = "EditQuantityController", urlPatterns = {"/EditQuantityController"})
 public class EditQuantityController extends HttpServlet {
 
-    private static final String ERROR="WEB-INF\\error.jsp";
-    private static final String SUCCESS="WEB-INF\\cart.jsp";
+    private static final String ERROR = "WEB-INF\\error.jsp";
+    private static final String SUCCESS = "WEB-INF\\cart.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        try{
+        try {
             int cerentQuantity = Integer.parseInt(request.getParameter("quantity"));
             String productID = request.getParameter("productID");
             HttpSession session = request.getSession();
-            Cart cart = (Cart)session.getAttribute("CART");
+            Cart cart = (Cart) session.getAttribute("CART");
             ProductDAO dao = new ProductDAO();
-            
-            if(cart != null ){
-                cart.update(productID, new CartItem(dao.getProductByID(productID), cerentQuantity));
-                url = SUCCESS;
+
+            if (cart != null) {
+                if (dao.getProductByID(productID).quantity > cerentQuantity) {
+                    cart.update(productID, new CartItem(dao.getProductByID(productID), cerentQuantity));
+                    url = SUCCESS;
+                } else {
+                    cart.update(productID, new CartItem(dao.getProductByID(productID), 1));
+                    url = SUCCESS;
+                    request.setAttribute("ERROR", "Sorry we don't have enough");
+                }
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             log("Error at EditQuantityController: " + e.toString());
-        }finally{
+        } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
